@@ -74,6 +74,8 @@ def convexify_constr(constr):
                     dom.append(con)
         else:
             right = constr.args[1]
-        return cvx.real(left - right) <= 0, dom
+        # quick hack to get fairness-classification methods working, but also means any input needs to be real-valued
+        # return cvx.real(left - right) <= 0, dom
+        return left - right <= 0, dom
     else:
         return constr
